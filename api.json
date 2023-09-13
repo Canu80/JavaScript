@@ -1,0 +1,38 @@
+[
+    {
+        "precio": 7361,
+        "id": 1,
+        "title": "Alimento Pedigree Sano Crecimiento Etapa 1 para perro cachorro todos los tamaños sabor mix en bolsa de 21 kg",
+        "thumbnailUrl": "./img/01.webp"
+    },
+    {
+        "precio": 6893,
+        "id": 2,
+        "title": "Alimento Pedigree Óptima Digestión Etapa 2 para perro adulto todos los tamaños sabor carne y vegetales en bolsa de 21 kg",
+        "thumbnailUrl": "./img/02.webp"
+    },
+    {
+        "precio": 4025,
+        "id": 3,
+        "title": "Alimento Pedigree Vida Plena Etapa 3 para perro senior todos los tamaños sabor mix en bolsa de 8 kg",
+        "thumbnailUrl": "./img/03.webp"
+    },
+    {
+        "precio": 6834,
+        "id": 4,
+        "title": "Alimento Cat Chow Defense Plus para gato de temprana edad sabor mix en bolsa de 8 kg",
+        "thumbnailUrl": "./img/04.webp"
+    },
+    {
+        "precio": 5719,
+        "id": 5,
+        "title": "Alimento Cat Chow Defense Plus para gato adulto sabor carne en bolsa de 8 kg",
+        "thumbnailUrl": "./img/05.webp"
+    },
+    {
+        "precio": 9515,
+        "id": 6,
+        "title": "Alimento Cat Chow Defense Plus para gato adulto sabor pescado en bolsa de 15 kg",
+        "thumbnailUrl": "./img/06.webp"
+    }
+]

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Javascript - CoderHouse</title>
+    <!-- ESTILOS CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+
+</head>
+
+<body>
+    <main>
+        <!-- MENU DE NAVEGACIÓN -->
+        <nav class="navbar bg-light">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">ENTREGA FINAL - CANULLO DANIEL - CODERHOUSE</span>
+            </div>
+        </nav>
+        <!-- CONTENEDOR DE PRODUCTOS -->
+        <div class="container">
+            <h1 class="text-center">Bienvenidos tu petshop online</h1>
+            <hr>
+
+            <div>
+                <h4>Elije los productos que necesites dentro de la lista de alimentos disponibles.</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Operar</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items"></tbody>
+                    <tfoot>
+                        <tr id="footer-carrito">
+                            <th scope="row" colspan="5">Carrito vacío, elija y agregue un producto</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="row" id="contenedor-productos"></div>
+
+
+        </div>
+
+        <template id="template-footer">
+            <th scope="row" colspan="2">Total productos</th>
+            <td>10</td>
+            <td>
+                <button class="btn btn-warning btn-sm" id="vaciar-carrito">
+                    Vaciar carrito
+                </button>
+            </td>
+            <td class="font-weight-bold">$ <span>5000</span></td>
+        </template>
+
+        <template id="template-carrito">
+            <tr>
+                <th scope="row">id</th>
+                <td>Alimento para mascotas</td>
+                <td>1</td>
+                <td>
+                    <button class="btn btn-info btn-sm" id="sumar-btn">
+                        +
+                    </button>
+                    <button class="btn btn-danger btn-sm" id="restar-btn">
+                        -
+                    </button>
+                </td>
+                <td>$ <span>0000</span></td>
+            </tr>
+        </template>
+
+        <template id="template-productos">
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card">
+                    <img src="" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Alimentos
+                        </h5>
+                        <p class="card-text">$ <span>0000</span></p>
+                        <button class="btn btn-dark btn-sm">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+        <!-- ESPACIO PARA MOSTRAR INFO DEL CARRITO -->
+
+        <div id="carrito"></div>
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <form action="" class="formulario" id="formulario">
+            <!-- Grupo: NOMBRE -->
+            <div class="formulario__grupo" id="grupo__nombre">
+                <label for="nombre" class="formulario__label">Nombre</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="nombre" id="IDnombre"
+                        placeholder="Ej. Daniel Canullo">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El usuario tiene que ser de 4 a 16 dígitos y solo puede contener
+                    numeros, letras y guion bajo.</p>
+            </div>
+
+            <!-- Grupo: CORREO ELECTRONICO -->
+            <div class="formulario__grupo" id="grupo__correo">
+                <label for="correo" class="formulario__label">Correo Electrónico</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="correo" id="IDcorreo"
+                        placeholder="Ej. nombre@correo.com">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El correo solo puede contener letras, numeros, puntos, guiones y
+                    guion bajo.</p>
+            </div>
+
+            <!-- Grupo: TELEFONO -->
+            <div class="formulario__grupo" id="grupo__telefono">
+                <label for="telefono" class="formulario__label">Teléfono</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="telefono" id="IDtelefono"
+                        placeholder="Ej. 91122334455">
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                </div>
+                <p class="formulario__input-error">El telefono solo puede contener numeros y el maximo son 14 dígitos.
+                </p>
+            </div>
+
+            <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+                    correctamente. </p>
+            </div>
+
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" id="btn" class="btn btn-warning btn-lg">Realizar la compra</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+            </div>
+        </form>
+
+        
+        <!-- MODAL: MOSTRAR RESULTADOS AL FINALIZAR LA COMPRA -->
+        <div id="myModal" class="modalContainer">
+            <div class="modal-content">
+                <span class="close">Cerrar [X]</span>
+                <div class="encabezado">
+                    <p>Petshop online</p>
+                </div>
+                <div class="texto">
+                    <p>Estimado: <span id="ModalNombre" class="texto2">0</span></p>
+                    <p>Su correo electrónico es: <span id="ModalCorreo" class="texto2">0</span></p>
+                    <p>Su número de teléfono es: <span id="ModalTelefono" class="texto2">0</span></p>
+                    <p>Su importe total a abonar es: $ <span id="ModalTotal" class="texto2">0</span></p>
+                </div>
+                <p>----------------------------------------------------------------------------------------</p>
+                <div class="texto">
+                    <p>La compra anterior fue realizada por: <span id="uNombre" class="texto2">0</span></p></p>
+                    <p>Su correo: <span id="uCorreo" class="texto2">0</span></p>
+                    <p>Su número de teléfono: <span id="uTelefono" class="texto2">0</span></p>
+                    <p>Su importe total fue de: $ <span id="uTotal" class="texto2">0</span></p>
+                </div>
+                <div class="saludo">
+                    <p>¡Gracias por tu compra!</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
